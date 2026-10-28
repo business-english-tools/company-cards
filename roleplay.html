@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Fair Role-play</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#F4F6FC;--card:#FFFFFF;--ink:#1C2340;--muted:#5D6685;--navy:#26338A;--sun:#F5B800;--ask:#D7263D;--askbg:#FDECEE;--line:#E1E5F2;
+--font:"Lexend",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#11152B;--card:#1B2142;--ink:#EEF0FA;--muted:#A3AAC8;--navy:#9FAEFF;--ask:#FF7A88;--askbg:#3A1E2A;--line:#2C3360;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.45}
+main{max-width:560px;margin:0 auto;padding:20px 16px 32px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;align-items:center;gap:14px}
+.badge{flex:none;width:56px;height:56px;border-radius:50%;background:var(--sun);color:#1C2340;display:grid;place-items:center;font-weight:700;font-size:28px}
+h1{margin:0;font-size:24px;line-height:1.15;color:var(--navy);text-wrap:balance}
+.sub{margin:2px 0 0;color:var(--muted);font-size:15px}
+.tip{margin:0;padding:12px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:15px}
+.co{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.co header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+h2{margin:0;font-size:19px;color:var(--navy)}
+.ctry{font-size:13px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+dl{margin:0;display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:7.2em 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+dt{color:var(--muted);font-size:14px}
+dd{margin:0;min-width:0;font-weight:600;font-variant-numeric:tabular-nums}
+.ask dd{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-weight:400}
+.chip{background:var(--askbg);color:var(--ask);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+.q{font-style:italic;font-size:15px}
+.foot{margin:0;color:var(--muted);font-size:14px;text-align:center}
+.back{color:var(--navy);font-size:14px}
+
+.set{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:4px}
+.pick a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:var(--bg);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;font-size:17px}
+.pick a:focus-visible{outline:3px solid var(--sun)}
+.b{flex:none;width:40px;height:40px;border-radius:50%;background:var(--sun);color:#1C2340;display:grid;place-items:center;font-weight:700;font-size:20px}
+h1{font-size:28px}
+
+.steps{margin:0;padding:12px 14px 12px 34px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:15px;display:flex;flex-direction:column;gap:4px}
+.pickbtn{font:inherit;font-weight:700;font-size:17px;padding:14px;border-radius:12px;border:0;background:var(--sun);color:#1C2340;cursor:pointer}
+.pickbtn:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.mine{border:2px solid var(--sun);box-shadow:0 0 0 3px color-mix(in srgb,var(--sun) 25%,transparent)}
+.mine-label{margin:0 0 6px;font-weight:700;color:var(--navy)}
+.convo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.line{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start}
+.who{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff}
+.wa{background:#1B8A7A}.wb{background:#D7263D}
+.phr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.phr h3{margin:0 0 4px;font-size:15px;color:var(--navy)}
+.phr ul{margin:0 0 10px;padding-left:20px}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+h2.sec{font-size:20px;margin-top:6px}
+@media (prefers-reduced-motion:no-preference){.mine{transition:box-shadow .3s}}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="./">&larr; All cards</a>
+<div class="top"><div class="badge" aria-hidden="true">&#129309;</div>
+  <div><h1>Role-play: at a trade fair</h1><p class="sub">Be a company. Meet new business partners.</p></div></div>
+<ol class="steps">
+  <li>Choose a company below, or tap the button.</li>
+  <li>Read your facts. Practise: "My company is called ..."</li>
+  <li>Stand up. Meet 3 partners. Ask and answer.</li>
+  <li>Report back: "I met ... from ... They ..."</li>
+</ol>
+<button class="pickbtn" id="pick" type="button">Give me a company</button>
+<div id="mineWrap" hidden><p class="mine-label">Your company:</p></div>
+<h2 class="sec">Example conversation</h2>
+<div class="convo"><div class="line"><span class="who wa">A</span><span>Hello! I'm Linh from Blue Ocean Seafood. Nice to meet you.</span></div><div class="line"><span class="who wb">B</span><span>Nice to meet you too, Linh. I'm Tom from Highland Tea. What does your company do?</span></div><div class="line"><span class="who wa">A</span><span>We export shrimp to Korea and Japan.</span></div><div class="line"><span class="who wb">B</span><span>Interesting! Where is your head office?</span></div><div class="line"><span class="who wa">A</span><span>It's in Nha Trang, in Vietnam.</span></div><div class="line"><span class="who wb">B</span><span>When was your company set up?</span></div><div class="line"><span class="who wa">A</span><span>It was set up in 2006.</span></div><div class="line"><span class="who wb">B</span><span>How many people work for you?</span></div><div class="line"><span class="who wa">A</span><span>We have 640 employees. And what about your company?</span></div><div class="line"><span class="who wb">B</span><span>We import tea from Vietnam. Our head office is in Edinburgh.</span></div><div class="line"><span class="who wa">A</span><span>Great! Here's my card. Let's keep in touch.</span></div><div class="line"><span class="who wb">B</span><span>Thank you. Nice talking to you!</span></div></div>
+<h2 class="sec">Useful phrases</h2>
+<div class="phr">
+  <h3>Start</h3><ul><li>Hello! I'm ... from ...</li><li>Nice to meet you.</li></ul>
+  <h3>Ask</h3><ul><li>What does your company do?</li><li>Where is your head office?</li><li>When was your company set up?</li><li>How many people work for you?</li><li>Do you export or import?</li></ul>
+  <h3>Finish</h3><ul style="margin-bottom:0"><li>Here's my card.</li><li>Let's keep in touch.</li><li>Nice talking to you!</li></ul>
+</div>
+<h2 class="sec">Companies</h2>
+<div class="roles"><article class="co role" id="role-0"><header><h2>Blue Ocean Seafood</h2><span class="ctry">Vietnam</span></header><dl><div class="row"><dt>Set up</dt><dd>2006</dd></div><div class="row"><dt>Head office</dt><dd>Nha Trang</dd></div><div class="row"><dt>Offices</dt><dd>8</dd></div><div class="row"><dt>Employees</dt><dd>640</dd></div><div class="row"><dt>Business</dt><dd>We export shrimp to Korea and Japan.</dd></div></dl></article><article class="co role" id="role-1"><header><h2>Han Bridge Electronics</h2><span class="ctry">Korea</span></header><dl><div class="row"><dt>Set up</dt><dd>1996</dd></div><div class="row"><dt>Head office</dt><dd>Incheon</dd></div><div class="row"><dt>Offices</dt><dd>11</dd></div><div class="row"><dt>Employees</dt><dd>4,200</dd></div><div class="row"><dt>Business</dt><dd>We make phone screens.</dd></div></dl></article><article class="co role" id="role-2"><header><h2>Kangaroo Wool</h2><span class="ctry">Australia</span></header><dl><div class="row"><dt>Set up</dt><dd>1985</dd></div><div class="row"><dt>Head office</dt><dd>Perth</dd></div><div class="row"><dt>Offices</dt><dd>5</dd></div><div class="row"><dt>Employees</dt><dd>300</dd></div><div class="row"><dt>Business</dt><dd>We sell wool and wool clothes.</dd></div></dl></article><article class="co role" id="role-3"><header><h2>Merlion Hotels</h2><span class="ctry">Singapore</span></header><dl><div class="row"><dt>Set up</dt><dd>2008</dd></div><div class="row"><dt>Head office</dt><dd>Singapore</dd></div><div class="row"><dt>Offices</dt><dd>6</dd></div><div class="row"><dt>Employees</dt><dd>1,100</dd></div><div class="row"><dt>Business</dt><dd>We run hotels in Asia.</dd></div></dl></article><article class="co role" id="role-4"><header><h2>Highland Tea Co.</h2><span class="ctry">UK</span></header><dl><div class="row"><dt>Set up</dt><dd>1921</dd></div><div class="row"><dt>Head office</dt><dd>Edinburgh</dd></div><div class="row"><dt>Offices</dt><dd>3</dd></div><div class="row"><dt>Employees</dt><dd>210</dd></div><div class="row"><dt>Business</dt><dd>We import tea from Vietnam.</dd></div></dl></article><article class="co role" id="role-5"><header><h2>Golden Gate Software</h2><span class="ctry">USA</span></header><dl><div class="row"><dt>Set up</dt><dd>2017</dd></div><div class="row"><dt>Head office</dt><dd>San Francisco</dd></div><div class="row"><dt>Offices</dt><dd>4</dd></div><div class="row"><dt>Employees</dt><dd>75</dd></div><div class="row"><dt>Business</dt><dd>We make apps for small shops.</dd></div></dl></article><article class="co role" id="role-6"><header><h2>Lucky Dragon Toys</h2><span class="ctry">China</span></header><dl><div class="row"><dt>Set up</dt><dd>2000</dd></div><div class="row"><dt>Head office</dt><dd>Shenzhen</dd></div><div class="row"><dt>Offices</dt><dd>6</dd></div><div class="row"><dt>Employees</dt><dd>3,800</dd></div><div class="row"><dt>Business</dt><dd>We manufacture toys.</dd></div></dl></article><article class="co role" id="role-7"><header><h2>Penang Palm Oil</h2><span class="ctry">Malaysia</span></header><dl><div class="row"><dt>Set up</dt><dd>1974</dd></div><div class="row"><dt>Head office</dt><dd>Penang</dd></div><div class="row"><dt>Offices</dt><dd>10</dd></div><div class="row"><dt>Employees</dt><dd>5,600</dd></div><div class="row"><dt>Business</dt><dd>We produce palm oil.</dd></div></dl></article></div>
+<p class="foot">Finished? Change roles and meet new partners.</p>
+<script>
+(function(){
+  var roles=document.querySelectorAll('.role'), wrap=document.getElementById('mineWrap'), last=-1;
+  document.getElementById('pick').addEventListener('click',function(){
+    var i; do { i=Math.floor(Math.random()*roles.length); } while(roles.length>1 && i===last);
+    last=i;
+    var old=wrap.querySelector('.role'); if(old) old.remove();
+    var c=roles[i].cloneNode(true); c.removeAttribute('id'); c.classList.add('mine');
+    wrap.appendChild(c); wrap.hidden=false;
+    this.textContent='Give me a different company';
+  });
+})();
+</script>
+</main>
+</body>
+</html>
