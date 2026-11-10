@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work Actions Vocabulary</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Lexend:wght@400;500;600&display=swap">
+<style>
+/* Layout: classroom projector board — top tab bar, one big stage per mode, cards in a 5-up grid */
+:root{
+  --bg:#f3f5f9; --surface:#ffffff; --ink:#18233f; --muted:#5b6582;
+  --line:#d8deea; --accent:#f2a516; --accent-ink:#3a2600; --brand:#22336b;
+  --good:#1f8a5b; --bad:#c2412d; --tint:#e8ecf6;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Lexend", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111729; --surface:#1a2238; --ink:#eef1f8; --muted:#a3acc4; --line:#2e3956;
+  --accent:#f5b53a; --accent-ink:#2a1b00; --brand:#9fb2ef; --good:#4cc68e; --bad:#ef7a64; --tint:#232d48; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111729; --surface:#1a2238; --ink:#eef1f8; --muted:#a3acc4; --line:#2e3956;
+  --accent:#f5b53a; --accent-ink:#2a1b00; --brand:#9fb2ef; --good:#4cc68e; --bad:#ef7a64; --tint:#232d48; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:20px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.05;margin:4px 0 0;color:var(--brand);text-wrap:balance}
+nav{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px}
+nav button{font:600 .95rem var(--body);border:0;background:transparent;color:var(--muted);padding:10px 18px;border-radius:999px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--brand);color:var(--bg)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.prompt{font-family:var(--display);font-weight:600;font-size:clamp(1.15rem,2.4vw,1.5rem);margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 18px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.btn{font:600 .95rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 16px;border-radius:10px;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.pic{width:100%;aspect-ratio:1.25;max-width:100%;display:grid;place-items:center;background:var(--tint);border-radius:10px;color:var(--brand)}
+.pic svg{width:58%;height:auto}
+.num{font:700 1rem var(--body);min-width:40px;height:32px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);border-radius:6px;cursor:pointer;font-variant-numeric:tabular-nums}
+.label{min-height:2.8em;font-weight:600;color:var(--bad);font-size:1.02rem;line-height:1.3;display:flex;align-items:center}
+.label[data-hidden="true"]{visibility:hidden}
+/* speak */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:stretch}
+@media (max-width:760px){.stage{grid-template-columns:1fr}}
+.big{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.big .pic{aspect-ratio:1.4}
+.big .pic svg{width:44%}
+.big .phrase{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3.6vw,2.4rem);color:var(--brand);text-align:center;line-height:1.1}
+.dialog{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.line{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:clamp(1.05rem,2.2vw,1.35rem)}
+.who{font-family:var(--display);font-weight:800;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:var(--bg);font-size:1.1rem}
+.line.b .who{background:var(--accent);color:var(--accent-ink)}
+.hl{background:var(--accent);color:var(--accent-ink);padding:0 6px;border-radius:5px;font-weight:600}
+.gap{display:inline-block;min-width:7em;border-bottom:2px dashed var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .95rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--bg);border-color:var(--brand)}
+.hint{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+/* quiz */
+.quiz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:center}
+@media (max-width:760px){.quiz{grid-template-columns:1fr}}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{font:600 clamp(1.05rem,2.2vw,1.35rem) var(--body);text-align:left;padding:16px 20px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.opt.right{border-color:var(--good);color:var(--good)}
+.opt.wrong{border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.score{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:8px;background:var(--tint);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.done{text-align:center;padding:40px 16px;background:var(--surface);border:1px solid var(--line);border-radius:18px}
+.done b{font-family:var(--display);font-size:3.5rem;color:var(--brand);display:block;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Asking for and giving advice · Vocabulary</div>
+      <h1>What do you do at work?</h1>
+    </div>
+    <nav role="tablist" aria-label="Activity">
+      <button role="tab" id="tab-guess" aria-selected="true" data-mode="guess">1 · Guess</button>
+      <button role="tab" id="tab-speak" aria-selected="false" data-mode="speak">2 · Speak</button>
+      <button role="tab" id="tab-quiz" aria-selected="false" data-mode="quiz">3 · Quiz</button>
+    </nav>
+  </header>
+
+  <section id="guess">
+    <p class="prompt">Can you guess these work activities?</p>
+    <p class="sub">Click a number to show the words.</p>
+    <div class="tools">
+      <button class="btn" id="showAll">Show all</button>
+      <button class="btn" id="hideAll">Hide all</button>
+      <button class="btn" id="shuffle">Shuffle</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="speak" hidden>
+    <p class="prompt">Tell your partner about your work.</p>
+    <p class="sub">Choose an ending, then say the conversation. Change roles.</p>
+    <div class="stage">
+      <div class="big">
+        <div class="pic" id="spPic"></div>
+        <div class="phrase" id="spPhrase"></div>
+        <div class="tools" style="margin:0">
+          <button class="btn" id="spPrev">Back</button>
+          <button class="btn primary" id="spNext">Next card</button>
+        </div>
+      </div>
+      <div class="dialog">
+        <div class="hint">When? Where? Who with?</div>
+        <div class="chips" id="chips"></div>
+        <div class="line"><span class="who">A</span><span id="lineA"></span></div>
+        <div class="line b"><span class="who">B</span><span>Me too! / Really? I <span class="gap" aria-label="your answer"></span>.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" hidden>
+    <div id="quizBody"></div>
+  </section>
+</div>
+
+<script>
+const S = (d) => `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const WORDS = [
+  {t:"take a break", s:S('<path d="M14 26h28v12a10 10 0 0 1-10 10h-8a10 10 0 0 1-10-10z"/><path d="M42 30h3a5 5 0 0 1 0 10h-3"/><path d="M22 10c-2 3 2 5 0 9M30 10c-2 3 2 5 0 9"/><path d="M10 55h40"/>')},
+  {t:"reply to emails", s:S('<rect x="8" y="14" width="48" height="34" rx="4"/><path d="M8 18l24 16 24-16"/><path d="M40 56h-14m5-5l-5 5 5 5"/>')},
+  {t:"check the schedule", s:S('<rect x="10" y="14" width="44" height="40" rx="4"/><path d="M10 26h44M22 8v10M42 8v10"/><path d="M20 36l4 4 7-8"/><path d="M38 38h8M20 47h8M38 47h8"/>')},
+  {t:"call the client", s:S('<path d="M18 9h7l4 11-5 4a26 26 0 0 0 15 15l4-5 11 4v7a5 5 0 0 1-5 5C26 50 14 38 13 14a5 5 0 0 1 5-5z"/><path d="M40 10a14 14 0 0 1 14 14M40 18a6 6 0 0 1 6 6"/>')},
+  {t:"prepare for the meeting", s:S('<rect x="14" y="12" width="36" height="44" rx="4"/><rect x="24" y="7" width="16" height="9" rx="2"/><path d="M22 28h20M22 36h20M22 44h12"/>')},
+  {t:"book a hotel", s:S('<path d="M8 48V18M8 38h48v10M56 48V34a6 6 0 0 0-6-6H28v10"/><circle cx="18" cy="31" r="5"/>')},
+  {t:"send the documents", s:S('<path d="M8 30L56 10 44 54 31 38z"/><path d="M31 38L56 10"/><path d="M31 38v12l6-7"/>')},
+  {t:"make a to-do list", s:S('<rect x="12" y="8" width="40" height="48" rx="4"/><path d="M19 21l3 3 6-6M19 33l3 3 6-6M19 45l3 3 6-6"/><path d="M33 22h12M33 34h12M33 46h12"/>')},
+  {t:"go on a business trip", s:S('<rect x="10" y="22" width="44" height="30" rx="4"/><path d="M24 22v-6h16v6M10 34h44"/><path d="M28 34v5h8v-5"/>')},
+  {t:"have a video call", s:S('<rect x="12" y="10" width="40" height="30" rx="3"/><path d="M6 50h52l-5-10H11z"/><circle cx="32" cy="21" r="5"/><path d="M23 36a9 9 0 0 1 18 0"/>')},
+];
+
+/* tabs */
+const tabs = document.querySelectorAll('nav button');
+function setMode(m){
+  tabs.forEach(b=>b.setAttribute('aria-selected', b.dataset.mode===m));
+  ['guess','speak','quiz'].forEach(id=>document.getElementById(id).hidden = id!==m);
+  if(m==='quiz' && !quiz.qs) startQuiz();
+}
+tabs.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+
+/* guess */
+let order = WORDS.map((_,i)=>i);
+const grid = document.getElementById('grid');
+function renderGrid(){
+  grid.innerHTML = order.map((wi,i)=>`<div class="card"><div class="pic">${WORDS[wi].s}</div>
+    <button class="num" aria-label="Show or hide word ${i+1}">${i+1}</button>
+    <div class="label" data-hidden="true">${WORDS[wi].t}</div></div>`).join('');
+  grid.querySelectorAll('.num').forEach(n=>n.addEventListener('click',()=>{
+    const l=n.nextElementSibling; l.dataset.hidden = l.dataset.hidden==='true'?'false':'true';}));
+}
+const setAll = v => grid.querySelectorAll('.label').forEach(l=>l.dataset.hidden=v);
+document.getElementById('showAll').onclick=()=>setAll('false');
+document.getElementById('hideAll').onclick=()=>setAll('true');
+const shuf = a => {for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+document.getElementById('shuffle').onclick=()=>{shuf(order);renderGrid()};
+renderGrid();
+
+/* speak: each activity has its own natural endings */
+const ENDS = {
+  "take a break":["after two hours of work","after lunch","when I feel tired"],
+  "reply to emails":["every morning","before lunch","at the end of the day"],
+  "check the schedule":["every morning","before meetings","on Monday morning"],
+  "call the client":["every week","after the meeting","when there is a problem"],
+  "prepare for the meeting":["the day before","every Monday","with my team"],
+  "book a hotel":["before a business trip","online","near the office"],
+  "send the documents":["after the meeting","by email","on Friday"],
+  "make a to-do list":["every morning","every Monday","before I go home"],
+  "go on a business trip":["every month","to Korea twice a year","with my boss"],
+  "have a video call":["with my partners every week","on Friday afternoon","with Singapore every Monday"],
+};
+let sp = 0, end = 0;
+const chips = document.getElementById('chips');
+function renderSpeak(){
+  const w = WORDS[sp], ends = ENDS[w.t];
+  document.getElementById('spPic').innerHTML = w.s;
+  document.getElementById('spPhrase').textContent = w.t;
+  chips.innerHTML = ends.map((e,i)=>`<button class="chip" aria-pressed="${i===end}">${e}</button>`).join('');
+  chips.querySelectorAll('.chip').forEach((c,i)=>c.onclick=()=>{end=i;renderSpeak()});
+  document.getElementById('lineA').innerHTML = `I <span class="hl">${w.t}</span> ${ends[end]}.`;
+}
+document.getElementById('spNext').onclick=()=>{sp=(sp+1)%WORDS.length;end=0;renderSpeak()};
+document.getElementById('spPrev').onclick=()=>{sp=(sp-1+WORDS.length)%WORDS.length;end=0;renderSpeak()};
+renderSpeak();
+
+/* quiz */
+const quiz = {};
+const qb = document.getElementById('quizBody');
+function startQuiz(){
+  quiz.qs = shuf(WORDS.map((_,i)=>i)); quiz.i=0; quiz.score=0; renderQ();
+}
+function renderQ(){
+  const n = quiz.qs.length;
+  if(quiz.i>=n){
+    qb.innerHTML = `<div class="done"><div class="hint">Your score</div><b>${quiz.score} / ${n}</b>
+      <p class="sub">${quiz.score===n?'Perfect! Great job.':'Good work. Try again?'}</p>
+      <button class="btn primary" id="again">Play again</button></div>`;
+    document.getElementById('again').onclick=startQuiz; return;
+  }
+  const ans = quiz.qs[quiz.i];
+  const others = shuf(WORDS.map((_,i)=>i).filter(i=>i!==ans)).slice(0,2);
+  const opts = shuf([ans,...others]);
+  qb.innerHTML = `<div class="score"><span>Question ${quiz.i+1} of ${n}</span>
+      <div class="bar"><i style="width:${quiz.i/n*100}%"></i></div><span>Score ${quiz.score}</span></div>
+    <p class="prompt">What is this activity?</p>
+    <div class="quiz"><div class="big"><div class="pic">${WORDS[ans].s}</div></div>
+    <div class="opts">${opts.map(o=>`<button class="opt" data-i="${o}">${WORDS[o].t}</button>`).join('')}
+    <button class="btn primary" id="qNext" hidden>Next question</button></div></div>`;
+  qb.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    const ok = +b.dataset.i===ans; if(ok) quiz.score++;
+    qb.querySelectorAll('.opt').forEach(x=>{x.disabled=true; if(+x.dataset.i===ans) x.classList.add('right');});
+    if(!ok) b.classList.add('wrong');
+    const nx=document.getElementById('qNext'); nx.hidden=false; nx.focus();
+    nx.onclick=()=>{quiz.i++;renderQ()};
+  });
+}
+</script>
+</body>
+</html>
